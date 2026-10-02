@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CYBERRAKSHAK AI autonomous pentesting assistant and security copilot dashboard." />
+  <title>CYBERRAKSHAK | AI Security Copilot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-mark"><span class="brand-dot"></span><span>CYBERRAKSHAK</span><small>AI SECURITY</small></div>
+      <button class="workspace-switcher" id="workspaceButton"><span class="workspace-icon"><i data-lucide="layers-3"></i></span><span><b>Northstar Labs</b><small>Security workspace</small></span><i data-lucide="chevrons-up-down" class="switch-icon"></i></button>
+      <nav class="main-nav" aria-label="Main navigation">
+        <p class="nav-label">Command center</p>
+        <button class="nav-item active" data-view="overview"><i data-lucide="layout-dashboard"></i><span>Overview</span><em>01</em></button>
+        <button class="nav-item" data-view="operations"><i data-lucide="radar"></i><span>Autonomous ops</span><em>03</em></button>
+        <button class="nav-item" data-view="findings"><i data-lucide="shield-alert"></i><span>Findings</span><em class="alert-count">12</em></button>
+        <button class="nav-item" data-view="assets"><i data-lucide="server"></i><span>Attack surface</span></button>
+        <button class="nav-item" data-view="attackPaths"><i data-lucide="route"></i><span>Attack Paths</span><em class="critical-count">4</em></button>
+        <button class="nav-item" data-view="simulations"><i data-lucide="flask-conical"></i><span>Simulations</span></button>
+        <p class="nav-label second">Workspace</p>
+        <button class="nav-item" data-view="reports"><i data-lucide="file-bar-chart-2"></i><span>Reports</span></button>
+        <button class="nav-item" data-view="playbooks"><i data-lucide="notebook-tabs"></i><span>Playbooks</span></button>
+        <button class="nav-item" data-view="settings"><i data-lucide="settings-2"></i><span>Settings</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="safe-mode"><span class="pulse-dot"></span><span><b>Guardrails active</b><small>Authorized scope only</small></span><i data-lucide="lock-keyhole"></i></div>
+        <button class="user-row" id="profileButton"><div class="avatar">AV</div><span><b>AVI</b><small>Security lead</small></span><i data-lucide="more-horizontal"></i></button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div class="breadcrumbs"><span>Workspace</span><i data-lucide="chevron-right"></i><b id="breadcrumb">Overview</b></div><div class="top-actions"><button class="command-button" id="commandButton" aria-label="Search workspace"><i data-lucide="search"></i><span>Search workspace</span><kbd>Ctrl K</kbd></button><button class="icon-button" id="notificationButton" aria-label="Notifications"><i data-lucide="bell"></i><span class="notification-dot"></span></button><button class="icon-button" id="themeToggle" aria-label="Switch theme"><i data-lucide="sun-moon"></i></button><button class="help-button" id="helpButton"><i data-lucide="circle-help"></i><span>Help center</span></button><button class="primary-button" id="newScanButton"><i data-lucide="plus"></i> New assessment</button></div></header>
+      <div id="viewRoot"></div>
+      <footer><span><i data-lucide="shield-check"></i> CYBERRAKSHAK operates within your approved scope</span><span>Last synced <b id="syncTime">just now</b></span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="assessmentModal" aria-hidden="true"><section class="assessment-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-header"><div><p class="section-kicker">New autonomous operation</p><h2 id="modalTitle">Configure assessment</h2></div><button class="close-button" data-close-modal aria-label="Close dialog"><i data-lucide="x"></i></button></div><div class="stepper"><span class="step active"><b>01</b> Scope</span><i data-lucide="chevron-right"></i><span class="step"><b>02</b> Objectives</span><i data-lucide="chevron-right"></i><span class="step"><b>03</b> Review</span></div><label class="field-label" for="scopeSelect">Choose an approved scope</label><select class="select-field" id="scopeSelect"><option>Northstar production</option><option>Northstar staging</option><option>Mobile API program</option></select><div class="scope-warning"><i data-lucide="shield-check"></i><span><b>Guardrails enabled</b><small>Only explicitly approved assets can be assessed.</small></span></div><label class="field-label">Assessment mode</label><div class="mode-grid"><button class="mode-option selected" data-mode="Safe perimeter"><i data-lucide="radar"></i><span><b>Safe perimeter</b><small>Discovery and passive validation</small></span><i data-lucide="check-circle-2" class="mode-check"></i></button><button class="mode-option" data-mode="Deep application"><i data-lucide="bug"></i><span><b>Deep application</b><small>Authenticated logic testing</small></span><i data-lucide="circle" class="mode-check"></i></button></div><div class="modal-actions"><button class="cancel-button" data-close-modal>Cancel</button><button class="primary-button" id="launchAssessment"><i data-lucide="play"></i> Launch assessment</button></div></section></div>
+  <div class="command-palette" id="commandPalette" aria-hidden="true"><div class="palette-window"><div class="palette-search"><i data-lucide="search"></i><input id="paletteInput" type="search" placeholder="Search findings, assets, or actions..." autocomplete="off"><kbd>ESC</kbd></div><div class="palette-group" id="paletteResults"></div><div class="palette-footer"><span><i data-lucide="arrow-up-down"></i> Navigate</span><span><i data-lucide="corner-down-left"></i> Select</span><span><i data-lucide="command"></i> Shortcuts</span></div></div></div>
+  <div class="toast" id="toast" role="status"><i data-lucide="check-circle-2"></i><span></span></div>
+  <script src="data-models.js"></script>
+  <script src="analysis-engine.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
